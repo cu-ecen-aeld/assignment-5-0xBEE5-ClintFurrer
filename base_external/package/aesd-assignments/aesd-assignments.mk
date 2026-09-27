@@ -6,7 +6,7 @@
 
 #TODO: Fill up the contents below in order to reference your assignment 3 git contents
 
-AESD_ASSIGNMENTS_VERSION = 8dcdf3b52878621352177e4c215e9378167f6bc8
+AESD_ASSIGNMENTS_VERSION = 667d405101f16e1fd990b100bfb12ac8a2d30137
 
 # Note: Be sure to reference the *ssh* repository URL here (not https) to work properly
 # with ssh keys and the automated build/test system.
@@ -16,7 +16,8 @@ AESD_ASSIGNMENTS_SITE_METHOD = git
 AESD_ASSIGNMENTS_GIT_SUBMODULES = YES
 
 define AESD_ASSIGNMENTS_BUILD_CMDS
-	$(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/finder-app all
+	$(TARGET_MAKE_ENV) $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/finder-app all
+	$(TARGET_MAKE_ENV) $(MAKE) $(TARGET_CONFIGURE_OPTS) -C $(@D)/server all
 endef
 
 # TODO add your writer, finder and finder-test utilities/scripts to the installation steps below
