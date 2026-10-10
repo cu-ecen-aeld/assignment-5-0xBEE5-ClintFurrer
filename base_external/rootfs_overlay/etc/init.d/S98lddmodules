@@ -1,0 +1,27 @@
+#! /bin/sh
+
+MODULE_DIR="/lib/modules/$(uname -r)/extra"
+
+case "$1" in
+start)
+echo "Starting init script for Module Loading"
+    cd "$MODULE_DIR" || exit 1
+    /bin/scull_load || exit 1
+    /bin/module_load faulty || exit 1
+    /bin/module_load hello || exit 1
+;;
+stop)
+echo "Removing user modules"
+    cd "$MODULE_DIR" || exit 1
+    /bin/module_unload hello
+    /bin/module_unload faulty
+    /bin/scull_unload
+;;
+*)
+echo "Usage: $0 {start|stop}"
+exit 1
+esac
+exit 0
+
+#AI Helped
+#https://claude.ai/chat/e4583df9-098d-4552-970e-d3c720830421?onboarding=1
